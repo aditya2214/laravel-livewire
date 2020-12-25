@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-
+use Auth;
 class ContactUpdate extends Component
 {
     public $name;
@@ -34,7 +34,8 @@ class ContactUpdate extends Component
             $contact = \App\Contact::find($this->contactId);
             $contact->update([
                 'name'=>$this->name,
-                'contact'=>$this->contact
+                'contact'=>$this->contact,
+                'id_user'=> Auth::user()->id
             ]);
 
             $this->resetInput();

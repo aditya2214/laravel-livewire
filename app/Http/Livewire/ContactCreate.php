@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-
+use Auth;
 class ContactCreate extends Component
 {
     public $name; 
@@ -22,7 +22,8 @@ class ContactCreate extends Component
 
         $contact = \App\Contact::create([
             'name'=>$this->name,
-            'contact'=>$this->contact
+            'contact'=>$this->contact,
+            'id_user'=> Auth::user()->id
         ]);
 
         $this->resetInput();
