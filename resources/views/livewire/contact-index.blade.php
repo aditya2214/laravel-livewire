@@ -5,7 +5,11 @@
     </div>
     @endif
     <br>
+    @if($statusUpdate)
+    <livewire:contact-update></livewire:contact-update>
+    @else
     <livewire:contact-create></livewire:contact-create>
+    @endif
     <hr>
     <table class="table table-hover">
         <thead>
@@ -23,7 +27,7 @@
                 <td>{{$da->name}}</td>
                 <td>{{$da->contact}}</td>
                 <td>
-                    <button class="btn btn-info btn-sm">Edit</button>
+                    <button wire:click="getContact({{$da->id}})" class="btn btn-info btn-sm">Edit</button>
                     <button class="btn btn-danger btn-sm">Hapus </button>
                 </td>
             </tr>

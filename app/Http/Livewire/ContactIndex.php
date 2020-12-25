@@ -6,8 +6,12 @@ use Livewire\Component;
 use Alert;
 class ContactIndex extends Component
 {
+    public $statusUpdate = false;
+
     protected $listeners = [
-        'contactStored' => 'handleStore'
+        'contactStored' => 'handleStore',
+        'contactUpdated' => 'handleUpdate'
+
     ];
 
     public $data;
@@ -25,5 +29,18 @@ class ContactIndex extends Component
     public function handleStore($contact){
         // dd($contact);
         session()->flash('message', 'kontak '.$contact['name'].' berhasil disimpan');
+    }
+
+    public function handleUpdate($contact){
+        // dd($contact);
+        session()->flash('message', 'kontak '.$contact['name'].' berhasil di update');
+    }
+
+    public function getContact($id){
+        $this->statusUpdate = true;
+
+        $contact = \App\Contact::find($id);
+
+        $this->emit('getContact',$contact);
     }
 }

@@ -15,7 +15,7 @@ class ContactCreate extends Component
     }
 
     public function store(){
-        $this-validate([
+        $this->validate([
             'name'=> 'required|min:3',
             'contact'=> 'required|max:15'
         ]);
