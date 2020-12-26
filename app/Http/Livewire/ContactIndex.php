@@ -30,8 +30,8 @@ class ContactIndex extends Component
     {
         return view('livewire.contact-index', [
             'data' => $this->search === null ?
-                \App\Contact::where('id_user',Auth::user()->id)->paginate($this->paginate):
-                \App\Contact::where('name','like','%'.$this->search.'%')->where('id_user',Auth::user()->id)->paginate($this->paginate)
+                \App\Contact::where('id_user',Auth::user()->id)->orderby('id','DESC')->paginate($this->paginate):
+                \App\Contact::where('name','like','%'.$this->search.'%')->orWhere('contact','like','%'.$this->search.'%')->where('id_user',Auth::user()->id)->orderby('id','DESC')->paginate($this->paginate)
         ]);
         
         // $data = \App\Contact::all(); 
